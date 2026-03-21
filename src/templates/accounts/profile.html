@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow border-0 rounded-4 overflow-hidden">
+                <div class="py-5 text-center" style="background: linear-gradient(135deg, #89a7ce 0%, #cab5d7 100%);">
+                    {% if perfil_user.perfil.avatar %}
+                        <img src="{{ perfil_user.perfil.avatar.url }}" class="rounded-circle border border-4 border-white shadow" style="width: 150px; height: 150px; object-fit: cover;">
+                    {% else %}
+                        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="rounded-circle border border-4 border-white shadow" style="width: 150px;">
+                    {% endif %}
+                    <h3 class="text-white mt-3 fw-bold">@{{ perfil_user.username }}</h3>
+                </div>
+                
+                <div class="card-body p-4">
+                    <h5 class="fw-bold mb-3 border-bottom pb-2">Información Personal</h5>
+                    <table class="table table-borderless">
+                        <tr>
+                            <td class="text-muted" style="width: 40%;">Nombre:</td>
+                            <td class="fw-bold">{{ perfil_user.first_name|default:"No asignado" }}</td>
+                        </tr>
+                        <tr>
+                            <td class="text-muted">Apellido:</td>
+                            <td class="fw-bold">{{ perfil_user.last_name|default:"No asignado" }}</td>
+                        </tr>
+                        <tr>
+                            <td class="text-muted">Email:</td>
+                            <td class="fw-bold">{{ perfil_user.email }}</td>
+                        </tr>
+                    </table>
+
+                    <h5 class="fw-bold mt-4 mb-3 border-bottom pb-2">Sobre mí</h5>
+                    <p class="text-secondary">
+                        {{ perfil_user.perfil.bio|default:"Este usuario aún no tiene biografía." }}
+                    </p>
+                    
+                    <ul class="list-unstyled">
+                        {% if perfil_user.perfil.link %}
+                        <li><strong>🌐 Web:</strong> <a href="{{ perfil_user.perfil.link }}" target="_blank">{{ perfil_user.perfil.link }}</a></li>
+                        {% endif %}
+                        {% if perfil_user.perfil.cumpleanos %}
+                        <li><strong>🎂 Cumpleaños:</strong> {{ perfil_user.perfil.cumpleanos|date:"d M Y" }}</li>
+                        {% endif %}
+                    </ul>
+
+                    {% if user.id == perfil_user.id %}
+                    <div class="d-grid gap-2 mt-4">
+                        <a href="{% url 'profile_edit' %}" class="btn btn-outline-primary rounded-pill">Editar Perfil</a>
+                        <a href="{% url 'change_password' %}" class="btn btn-outline-secondary btn-sm rounded-pill">Cambiar Contraseña</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

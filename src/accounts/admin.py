@@ -1,0 +1,15 @@
+from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django.contrib.auth.models import User
+from .models import Perfil
+
+class PerfilInline(admin.StackedInline):
+    model = Perfil
+    can_delete = False
+
+class UserAdmin(BaseUserAdmin):
+    inlines = (PerfilInline,)
+
+# Reiniciamos el registro del User para que use nuestra nueva configuración
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <h1 class="fw-bold mb-4">Acerca de Mí</h1>
+
+            <div class="mb-4">
+                <img src="{% static 'images/foto.jpeg' %}" 
+                     alt="Ariana - Data Analyst" 
+                     class="rounded-circle shadow-lg border border-3 border-white" 
+                     style="width: 180px; height: 180px; object-fit: cover;">
+            </div>
+            
+            <div class="card shadow-sm border-0 rounded-4 p-5 mb-5 text-start">
+                <p class="fs-5 lh-lg">
+                    ¡Hola! Soy Ariana, estudiante de Administración y Negocios Digitales, enfocada en el área de business analytics. 
+                    Actualmente combino mis estudios con una pasantía, lo que me permite aplicar mis conocimientos 
+                    académicos en el mundo real.
+                </p>
+                <p class="fs-5 lh-lg">
+                    Tengo un gran interés en la investigación y el análisis de datos. Uno de los temas que más 
+                    me apasiona investigar son la investigación de mercados, análisis de tendencias y comportamiento del consumidor. 
+                    Me encanta descubrir patrones y generar insights a partir de los datos, lo que me ha llevado a desarrollar habilidades en herramientas como Excel, Power BI y Python para análisis de datos.
+                </p>
+                <p class="fs-5 lh-lg">
+                    Este blog fue creado como proyecto final del curso de Python de <strong>CoderHouse</strong>, utilizando el framework Django, 
+                    con el objetivo de poner en práctica la creación de aplicaciones web completas (CRUD), 
+                    gestión de bases de datos y diseño de interfaces.
+                </p>
+            </div>
+            
+            <a href="{% url 'post_list' %}" class="btn btn-dark px-5 py-2 rounded-pill shadow">
+                Volver al Blog
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
